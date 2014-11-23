@@ -1,0 +1,9 @@
+<h3>Choose txt file to strip</h3>
+<div class="upload-form">
+  <%= form_tag({action: :upload}, multipart: true) do %>
+    <%= file_field_tag 'krem_file' %>
+    <div class="submit-button">
+      <%= submit_tag 'UPLOAD', class: "btn btn-primary .submit-file" %>
+    </div>
+  <% end %>
+</div>
