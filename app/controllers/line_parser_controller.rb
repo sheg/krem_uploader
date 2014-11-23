@@ -16,7 +16,7 @@ class LineParserController < ApplicationController
       generate_krem_file(upload_path, krem_name)
 
       flash['success'] = "File uploaded successfully! - #{uploaded_io.original_filename}"
-      redirect_to download_page_path(:path => krem_name)
+      redirect_to download_page_path(:path => URI.encode(krem_name))
     else
       redirect_to root_path flash['error'] = "No file selected - please choose a file to upload"
     end
@@ -27,7 +27,7 @@ class LineParserController < ApplicationController
   end
 
   def download_krem
-    path = params[:path]
+    path = URI.decode(params[:path])
     send_file File.open(path),
               filename: path.split('/')[-1],
               type: "text/plain"
